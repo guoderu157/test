@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.gdr.dao.EmpDao">
+
+    <resultMap type="Emp" id="empResultMap" >
+
+        <id property="id" column="id"/>
+
+        <result property="name" column="name"/>
+
+        <result property="age" column="age"/>
+
+        <result property="sex" column="sex"/>
+
+        <result property="email" column="email"/>
+
+        <result property="phone" column="phone"/>
+
+    </resultMap>
+
+    <insert id="addEmp" parameterType="Emp">
+
+        INSERT INTO t_emp(id,name,age,sex,email,phone) VALUE (#{id},#{name}, #{age}, #{sex},#{email},#{phone})
+
+    </insert>
+
+    <insert id="InputExcel">
+
+        INSERT INTO t_emp(id,name,age,sex,email,phone) VALUE (#{id},#{name}, #{age}, #{sex},#{email},#{phone})
+
+    </insert>
+
+
+    <delete id="deleteEmpById" parameterType="int">
+
+        DELETE FROM t_emp WHERE id=#{id}
+
+    </delete>
+
+
+
+    <update id="updateEmp" parameterType="emp">
+
+        UPDATE t_emp
+
+        SET name = #{name}, age = #{age}, sex = #{sex}, email = #{email},phone =#{phone}
+
+        WHERE  id = #{id}
+
+    </update>
+
+
+
+    <select id="queryById" resultType="Emp" parameterType="int">
+
+        SELECT id,name,age,sex,email,phone
+
+        FROM t_emp
+
+        WHERE id=#{id}
+
+    </select>
+
+    <select id="queryAllEmp" resultMap="empResultMap">
+
+        SELECT *
+
+        FROM t_emp
+
+    </select>
+    <!--查询 -->
+    <select id="queryByName" resultMap="empResultMap" parameterType="String">
+
+        SELECT *
+
+        FROM t_emp
+
+        WHERE name like concat('%',#{name},'%')
+    </select>
+
+</mapper>
