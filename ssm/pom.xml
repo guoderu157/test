@@ -25,7 +25,7 @@
 
     <spring.version>5.0.3.RELEASE</spring.version>
 
-    <mybatis.version>3.4.4</mybatis.version>
+    <mybatis.version>3.5.6</mybatis.version>
 
   </properties>
 
